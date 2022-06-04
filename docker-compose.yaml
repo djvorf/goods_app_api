@@ -1,0 +1,34 @@
+version: '3.3'
+
+services:
+  api_goods:
+    container_name: api_goods
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./static_volume:/usr/src/api_goods/staticfiles
+    expose:
+      - 8000
+    ports:
+    - 8000:8000
+    environment:
+      - SECRET_KEY=sdfmkldsmfklmklmsdklfmkl4343m4kl3mfklmlk
+      - PG_DB_NAME=postgres
+      - PG_USER=postgres
+      - PG_PASSWORD=postgres
+      - PG_HOST=postgres
+      - PG_PORT=5432
+    depends_on:
+      - postgres
+  postgres:
+    container_name: api_goods_db
+    image: postgres:13
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=postgres
+volumes:
+  postgres_data:
+  static_volume:

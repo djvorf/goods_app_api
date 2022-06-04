@@ -1,0 +1,14 @@
+venv
+.idea
+__pycache__
+db.sqlite3
+media
+local.env
+.env
+helm
+postgres_data
+static_volume
+staticfiles
+sqlite3
+images
+main
